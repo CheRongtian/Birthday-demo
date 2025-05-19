@@ -27,7 +27,7 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "File 1");
 
     sf::Music bgm;
-    if (!bgm.openFromFile("/Users/cherongtian/Desktop/bgm.ogg")) {
+    if (!bgm.openFromFile("bgm.ogg")) {
         std::cout << "Failed to load background music!" << std::endl;
     } else {
         bgm.setLoop(true);
@@ -123,7 +123,7 @@ int main() {
     EndingState endingState = Waiting;
     sf::Text endingText;
     endingText.setFont(font);
-    endingText.setString("Wish You Find A Boyfriend :)");
+    endingText.setString(":)");
     endingText.setCharacterSize(60);
     endingText.setFillColor(sf::Color(255, 255, 255));
     sf::FloatRect bounds = endingText.getLocalBounds();
