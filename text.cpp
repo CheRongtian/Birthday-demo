@@ -24,7 +24,7 @@ enum EndingState {
 };
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "File 0525");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "File 1");
 
     sf::Music bgm;
     if (!bgm.openFromFile("/Users/cherongtian/Desktop/bgm.ogg")) {
@@ -42,7 +42,7 @@ int main() {
     }
 
     std::string line1 = "Happy Birthday";
-    std::string line2 = "To Yi Yao";
+    std::string line2 = "To XX";
 
     std::vector<FadingChar> letters;
     unsigned int charSize = 50;
