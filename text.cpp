@@ -51,7 +51,7 @@ int main() {
     float spacingLetters = 30.0f;
     float spacingSpaces = 25.0f;
 
-    // 第一行宽度
+    // First Line Width
     float totalWidth1 = 0.0f;
     for (char c : line1) {
         sf::Text temp(std::string(1, c), font, charSize);
@@ -61,7 +61,7 @@ int main() {
     float startX1 = (window.getSize().x - totalWidth1) / 2.f;
     float y1 = 200;
 
-    // 第二行宽度估算
+    // Second Line Width Estimation
     float totalWidth2 = 0.0f;
     for (char c : line2) {
         totalWidth2 += (c == ' ') ? spacingSpaces : spacingLetters;
@@ -70,7 +70,7 @@ int main() {
     float startX2 = (window.getSize().x - totalWidth2) / 2.f;
     float y2 = 300;
 
-    // 第一行文字
+    // First Line
     float x1 = startX1;
     for (char c : line1) {
         FadingChar fc;
@@ -83,7 +83,7 @@ int main() {
         letters.push_back(fc);
     }
 
-    // 第二行文字
+    // Second Line
     float x2 = startX2;
     for (char c : line2) {
         FadingChar fc;
@@ -96,7 +96,7 @@ int main() {
         x2 += (c == ' ') ? spacingSpaces : spacingLetters;
     }
 
-    // 菱形星星初始化
+    // Star Initialization
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     std::vector<Star> stars;
     for (int i = 0; i < 100; ++i) {
@@ -119,7 +119,7 @@ int main() {
     sf::Clock clock;
     const int fadeSpeed = 5;
 
-    // 结尾祝福文字
+    // Final Text
     EndingState endingState = Waiting;
     sf::Text endingText;
     endingText.setFont(font);
@@ -140,13 +140,13 @@ int main() {
 
         float time = clock.getElapsedTime().asMilliseconds();
 
-        // 星星闪烁
+        // Star
         for (auto& star : stars) {
             float a = 127 + 127 * std::sin(star.frequency * time + star.phase);
             star.shape.setFillColor(sf::Color(255, 255, 255, static_cast<sf::Uint8>(a)));
         }
 
-        // 字母淡入
+        // Text Shows
         if (currentIndex < letters.size() && time > 10) {
             FadingChar& fc = letters[currentIndex];
             if (fc.alpha < 255) {
@@ -163,7 +163,7 @@ int main() {
             clock.restart();
         }
 
-        // 结尾滑入但不滑出
+        // Slide
         if (endingState == Entering) {
             if (currentY > finalY) {
                 currentY -= 0.1f;
@@ -174,12 +174,12 @@ int main() {
             }
         }
 
-        // 更新结尾文字位置
+        // Final Position
         if (endingState != Waiting) {
             endingText.setPosition((window.getSize().x - bounds.width) / 2.f, currentY);
         }
 
-        // 渲染
+        // Show
         window.clear(sf::Color(5, 5, 15));
         for (auto& star : stars) window.draw(star.shape);
         for (auto& fc : letters) window.draw(fc.text);
